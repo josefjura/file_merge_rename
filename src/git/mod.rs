@@ -61,7 +61,7 @@ fn traverse_tree(
             EntryKind::Tree => {
                 // Always recurse into subtrees
                 let mut buffer = Vec::new();
-                let subtree = repo.objects.find_tree(&entry.oid, &mut buffer)?;
+                let subtree = repo.objects.find_tree(entry.oid, &mut buffer)?;
                 traverse_tree(
                     &subtree,
                     extension,

@@ -48,7 +48,7 @@ pub fn process(
 
     if let Some(last_target_file) = target_files.last() {
         println!("Last script: {:?}", last_target_file);
-        let source = parse_path(&last_target_file, &config.root_directory)?;
+        let source = parse_path(last_target_file, &config.root_directory)?;
 
         println!(
             "Looking for new source files in {:?}",
@@ -64,7 +64,7 @@ pub fn process(
         .with_context(|| format!("Can't open source branch: {0}", &config.source_branch))?;
 
         println!("Found {:?} files in source branch", source_files.len());
-        let (date, index) = get_code(&last_target_file, today)?;
+        let (date, index) = get_code(last_target_file, today)?;
 
         for (i, source_name) in source_files.iter().enumerate() {
             let real_index = index + i as i64 + 1;

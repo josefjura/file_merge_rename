@@ -20,7 +20,7 @@ pub fn format_target_name(
 
     let file_name = regex.replace(&file_name, "");
 
-    Path::join(root, &version_path)
+    Path::join(root, version_path)
         .join(format!("{}__{}", order_code, file_name))
         .to_string_lossy()
         .to_string()
