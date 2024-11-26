@@ -12,7 +12,7 @@ pub fn find_files_in_branch(
     branch: &str,
     extension: Option<&str>,
     directory: Option<&Path>,
-) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+) -> anyhow::Result<Vec<String>> {
     // Open the repository
     let repo = gix::open(repo_path)?;
 
@@ -48,7 +48,7 @@ fn traverse_tree(
     current_path: String,
     matching_files: &mut Vec<String>,
     repo: &gix::Repository,
-) -> Result<(), Box<dyn std::error::Error>> {
+) -> anyhow::Result<()> {
     for entry in &tree.entries {
         // Compute the full path for the current entry
         let entry_path = if current_path.is_empty() {
