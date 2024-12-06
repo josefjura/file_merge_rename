@@ -67,6 +67,7 @@ pub fn process(
         let (date, index) = get_code(last_target_file, today)?;
 
         for (i, source_name) in source_files.iter().enumerate() {
+            println!("Processing file: {:?}", source_name);
             let real_index = index + i as i64 + 1;
             let target_name = format_target_name(
                 Path::new(source.folder.as_str()),

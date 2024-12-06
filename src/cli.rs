@@ -6,7 +6,7 @@ use crate::process::Configuration;
 
 #[derive(Parser, Debug)]
 #[command(
-    name = "Script Name Rename",
+    name = "File-Merge-Rename",
     version,
     about,
     long_about = "Git merging utility for serialized files"

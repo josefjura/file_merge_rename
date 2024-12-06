@@ -338,6 +338,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4"
 
 [[package]]
+name = "file_merge_rename"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "clap",
+ "git2",
+ "gix",
+ "regex",
+ "tempdir",
+]
+
+[[package]]
 name = "filetime"
 version = "0.2.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1814,19 +1827,6 @@ name = "scopeguard"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
-
-[[package]]
-name = "script_merge_rename"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chrono",
- "clap",
- "git2",
- "gix",
- "regex",
- "tempdir",
-]
 
 [[package]]
 name = "serde"

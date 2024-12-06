@@ -1,5 +1,5 @@
 [package]
-name = "script_merge_rename"
+name = "file_merge_rename"
 version = "0.1.0"
 edition = "2021"
 
@@ -13,3 +13,6 @@ clap = { version = "4.5.23", features = ["derive", "cargo"] }
 [dev-dependencies]
 git2 = { version = "0.19.0" }
 tempdir = { version = "0.3.7" }
+
+[registries]
+FileMergeRename = { index = "sparse+https://mongoloid.pkgs.visualstudio.com/ScriptMergerTest/_packaging/FileMergeRename/Cargo/index/" }
