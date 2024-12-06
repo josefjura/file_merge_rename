@@ -6,7 +6,7 @@ mod tests;
 
 pub fn format_target_name(
     root: &Path,
-    version_path: &str,
+    version_path: Option<&str>,
     order_code: &str,
     filename: &str,
 ) -> String {
@@ -20,7 +20,7 @@ pub fn format_target_name(
 
     let file_name = regex.replace(&file_name, "");
 
-    Path::join(root, version_path)
+    Path::join(root, version_path.unwrap_or(""))
         .join(format!("{}__{}", order_code, file_name))
         .to_string_lossy()
         .to_string()
@@ -33,7 +33,7 @@ fn format_source_move() {
     let order_code = "V20210802.01";
     let filename = "Database/Migrates/new/01__test.sql";
 
-    let result = format_target_name(root, version_path, order_code, filename);
+    let result = format_target_name(root, Some(version_path), order_code, filename);
 
     assert_eq!(
         result,
@@ -48,7 +48,7 @@ fn format_source_move_no_source_order() {
     let order_code = "V20210802.01";
     let filename = "Database/Migrates/new/test.sql";
 
-    let result = format_target_name(root, version_path, order_code, filename);
+    let result = format_target_name(root, Some(version_path), order_code, filename);
 
     assert_eq!(
         result,
@@ -63,14 +63,35 @@ fn format_source_move_version() {
     let order_code = "V20210802.01";
     let filename = "Database/Migrates/new/01__test.sql";
 
-    let result = format_target_name(root, version_path, order_code, filename);
+    let result = format_target_name(root, Some(version_path), order_code, filename);
 
     assert_eq!(
         result, "/mnt/c/Users/josef/source/eurowag/Aequitas/V20210802.01__test.sql",
         "Should return the correct path on ordered file"
     );
     let filename = "Database/Migrates/new/test.sql";
-    let result = format_target_name(root, version_path, order_code, filename);
+    let result = format_target_name(root, Some(version_path), order_code, filename);
+
+    assert_eq!(
+        result, "/mnt/c/Users/josef/source/eurowag/Aequitas/V20210802.01__test.sql",
+        "Should return the correct path on unordered file"
+    );
+}
+
+#[test]
+fn format_source_move_version_none() {
+    let root = Path::new("/mnt/c/Users/josef/source/eurowag/Aequitas");
+    let order_code = "V20210802.01";
+    let filename = "Database/Migrates/new/01__test.sql";
+
+    let result = format_target_name(root, None, order_code, filename);
+
+    assert_eq!(
+        result, "/mnt/c/Users/josef/source/eurowag/Aequitas/V20210802.01__test.sql",
+        "Should return the correct path on ordered file"
+    );
+    let filename = "Database/Migrates/new/test.sql";
+    let result = format_target_name(root, None, order_code, filename);
 
     assert_eq!(
         result, "/mnt/c/Users/josef/source/eurowag/Aequitas/V20210802.01__test.sql",

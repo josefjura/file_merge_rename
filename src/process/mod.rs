@@ -70,7 +70,7 @@ pub fn process(
             let real_index = index + i as i64 + 1;
             let target_name = format_target_name(
                 Path::new(source.folder.as_str()),
-                source.version.as_ref().unwrap(),
+                source.version.as_deref(),
                 format!("V{}.{:02}", date, real_index).as_str(),
                 source_name,
             );

@@ -1,0 +1,1 @@
+cargo run -- -r /home/josef/source/script_merge_rename_test -d scripts --target develop --source feature/01_scr --ext sql --source-filter scripts/new
